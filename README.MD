@@ -1,124 +1,143 @@
-TaskManagerApp 🚀
+# 🚀 TaskManagerApp
 
-A full-stack Task Manager application with MongoDB integration, built to help users create, view, update, and manage tasks efficiently across a backend API and frontend UI.
+A full-stack Task Manager application built with **Node.js, Express.js, and MongoDB**, allowing users to create, view, update, and delete tasks with ease.
 
-🔍 Overview
+---
 
-TaskManagerApp is a web application designed to let users manage their daily tasks — supporting core CRUD operations (Create, Read, Update, Delete) for tasks in a user-friendly interface. The backend API interacts with a MongoDB database, and the frontend provides an intuitive task management experience.
+## 📌 Overview
 
-📦 Features
+TaskManagerApp is a simple web application that helps users manage daily tasks using a backend API connected to a MongoDB database and a frontend interface for interaction.
 
-✨ Create new tasks and save them to the database
-📋 View all existing tasks in a list view
-✏️ Update or edit task details
-🗑️ Delete tasks
-🔐 Fully functional backend with RESTful API support
-🌐 Full stack architecture (frontend + backend)
+---
 
-🧠 Technologies Used
-Backend
+## ✨ Features
 
-Node.js — JavaScript runtime
+- 📝 Create new tasks  
+- 📋 View all tasks  
+- ✏️ Edit/update tasks  
+- 🗑️ Delete tasks  
+- 🚀 MongoDB integration  
+- 🔌 RESTful API
 
-Express.js — Backend framework
+---
 
-MongoDB — Database for storing tasks
+## 🛠️ Tech Stack
 
-Mongoose — ODM for MongoDB
+**Backend**
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
 
-Frontend
+**Frontend**
+- HTML
+- CSS
+- JavaScript
 
-JavaScript / HTML / CSS — User interface
+---
 
-(If using a specific framework like React, Angular, etc., list it here)
+## 📁 Project Structure
 
-📁 Repository Structure
+```
 TaskManagerApp/
-├── backend/        # API and server logic
-├── frontend/       # UI / client code
+├── backend/              # Server and API logic
+├── frontend/             # Frontend UI files
 ├── .gitignore
-├── README.md
+├── README.MD
 └── package-lock.json
+```
 
-🚀 Getting Started
-Prerequisites
+---
 
-Make sure you have the following installed:
+## 📥 Installation
 
-Node.js (v14 or higher)
+### 1. Clone the repository
 
-npm (comes with Node.js)
-
-MongoDB (local or cloud instance like Atlas)
-
-🛠️ Installation
-
-Clone the repository
-
+```bash
 git clone https://github.com/shikharadhikari/TaskManagerApp.git
 cd TaskManagerApp
+```
 
-Backend Setup
+---
 
-Navigate to the backend folder:
+### 2. Backend Setup
 
+```bash
 cd backend
-
-
-Install dependencies:
-
 npm install
+```
 
+Create a `.env` file with the following:
 
-Configure environment variables:
-
-Create a .env file with:
-
+```
 MONGO_URI=your_mongodb_connection_string
 PORT=5000
-
+```
 
 Start the backend server:
 
+```bash
 npm start
+```
 
-Frontend Setup
+---
 
-Open a new terminal and navigate to the frontend folder:
+### 3. Frontend Setup
 
+Open a new terminal:
+
+```bash
 cd frontend
-
-
-Install dependencies:
-
 npm install
+```
 
+Start the frontend:
 
-Start the frontend development server:
-
+```bash
 npm start
+```
 
-
-Now open your browser at:
-
+Visit:
+```
 http://localhost:3000
+```
 
-📌 API Endpoints
+---
 
-Examples — update based on your actual routes
+## 📡 API Endpoints
 
-Method	Endpoint	Description
-GET	/api/tasks	List all tasks
-POST	/api/tasks	Create a new task
-GET	/api/tasks/:id	Get a task by ID
-PUT	/api/tasks/:id	Update a task
-DELETE	/api/tasks/:id	Delete a task
-🛠 Usage
+| Method | Endpoint            | Description         |
+|--------|--------------------|---------------------|
+| GET    | /api/tasks         | Get all tasks       |
+| GET    | /api/tasks/:id     | Get task by ID      |
+| POST   | /api/tasks         | Create new task     |
+| PUT    | /api/tasks/:id     | Update a task       |
+| DELETE | /api/tasks/:id     | Delete a task       |
 
-Open the app in browser after starting both servers.
+---
 
-Add a new task via the form.
+## 🧑‍💻 Usage
 
-See your task listed instantly.
+1. Launch backend and frontend servers  
+2. Open the app in your browser  
+3. Add, update, or remove tasks
 
-Edit or delete any task as needed.
+---
+
+## 🤝 Contributing
+
+Want to improve this project?  
+1. Fork the repo  
+2. Create a new branch  
+3. Commit your changes  
+4. Open a pull request
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+⭐ If you find this project helpful, please give it a star!
