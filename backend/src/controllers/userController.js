@@ -29,7 +29,7 @@ export const createUser = async (req, res, next) => {
 export const getAllUsers = async (req, res, next) => {
   try {
     //pagination /tasks?page=2&limit=10
-    const page = Math.max(parseInt(req.query.page || '1', 10),100);
+    const page = Math.max(parseInt(req.query.page || '1', 10), 1);
     const limit = Math.min(Math.max(parseInt(req.query.limit || '10', 10),1),100);
     const skip = (page - 1) * limit;
 
@@ -53,16 +53,20 @@ export const getAllUsers = async (req, res, next) => {
     ]);
     //metadata -> pages, next, previous
     res.status(200).json({
-      page,
-      limit,
-      total,
-      totalPages: Math.ceil(total / limit),
-      hasNextPage: skip * limit < total,
-      hasPrevPage: page > 1,
-      sortBy,
-      order: order === 1 ? "asc" : "desc",
-      filtersApllied: filter,
-      users,
+      success: true,
+      message: "Users fetched successfully",
+      data: users,
+      meta: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+        hasNextPage: page * limit < total,
+        hasPrevPage: page > 1,
+        sortBy,
+        order: order === 1 ? "asc" : "desc",
+        filtersApplied: filter,
+      }
     });
 
   } catch (err) {

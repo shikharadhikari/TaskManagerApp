@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-export const fetchUsersApi = async({params}) => {
+export const fetchUsersApi = async(params) => {
     const res = await axiosClient.get('/users', {params});
     return res.data;//success, messaged, data : {users, total}
 }

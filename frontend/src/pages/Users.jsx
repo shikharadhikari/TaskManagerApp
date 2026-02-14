@@ -52,7 +52,7 @@ export default function Users() {
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.page]);
+  }, [query.page, query.role, query.email, query.sortBy, query.order]);
 
   const applyFilters = () => {
     setQuery((p) => ({ ...p, page: 1 }));
@@ -69,7 +69,6 @@ export default function Users() {
       order: "desc",
     };
     setQuery(next);
-    setTimeout(() => load(), 0);
   };
 
   const onCreateUser = async (payload) => {

@@ -1,143 +1,113 @@
-# 🚀 TaskManagerApp
+# Task Manager App (MERN Stack)
 
-A full-stack Task Manager application built with **Node.js, Express.js, and MongoDB**, allowing users to create, view, update, and delete tasks with ease.
+A production-style full-stack Task Management system built using:
 
----
+-   MongoDB
+-   Express.js
+-   React (Vite)
+-   Node.js
 
-## 📌 Overview
+## Core Features
 
-TaskManagerApp is a simple web application that helps users manage daily tasks using a backend API connected to a MongoDB database and a frontend interface for interaction.
+-   JWT Authentication
+-   Role-Based Access Control (user, admin)
+-   Ownership-based authorization
+-   Task CRUD operations
+-   Admin User Management
+-   Filtering, Sorting, Pagination
+-   React Context API for authentication state
+-   Axios global token synchronization
+-   Protected & Admin Routes
 
----
+------------------------------------------------------------------------
 
-## ✨ Features
+## Roles & Permissions
 
-- 📝 Create new tasks  
-- 📋 View all tasks  
-- ✏️ Edit/update tasks  
-- 🗑️ Delete tasks  
-- 🚀 MongoDB integration  
-- 🔌 RESTful API
+  Feature            User   Admin
+  ------------------ ------ -------
+  Register / Login   ✅     ✅
+  Create Task        ✅     ✅
+  View Own Tasks     ✅     ✅
+  View All Tasks     ❌     ✅
+  Update Own Task    ✅     ✅
+  Update Any Task    ❌     ✅
+  Delete Own Task    ✅     ✅
+  Delete Any Task    ❌     ✅
+  Manage Users       ❌     ✅
 
----
+------------------------------------------------------------------------
 
-## 🛠️ Tech Stack
+## Local Setup
 
-**Backend**
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
+### Backend
 
-**Frontend**
-- HTML
-- CSS
-- JavaScript
+Create `backend/.env`:
 
----
+MONGO_URI=mongodb://127.0.0.1:27017/task_manager
+JWT_SECRET=your_secret_key JWT_EXPIRES_IN=1d PORT=5000
 
-## 📁 Project Structure
+Run:
 
-```
-TaskManagerApp/
-├── backend/              # Server and API logic
-├── frontend/             # Frontend UI files
-├── .gitignore
-├── README.MD
-└── package-lock.json
-```
+npm install npm run dev
 
----
+Backend runs at: http://localhost:5000
 
-## 📥 Installation
+------------------------------------------------------------------------
 
-### 1. Clone the repository
+### Frontend
 
-```bash
-git clone https://github.com/shikharadhikari/TaskManagerApp.git
-cd TaskManagerApp
-```
+Create `frontend/.env`:
 
----
+VITE_API_BASE_URL=http://localhost:5000
 
-### 2. Backend Setup
+Run:
 
-```bash
-cd backend
-npm install
-```
+npm install npm run dev
 
-Create a `.env` file with the following:
+Frontend runs at: http://localhost:5173
 
-```
-MONGO_URI=your_mongodb_connection_string
-PORT=5000
-```
+------------------------------------------------------------------------
 
-Start the backend server:
+## Authentication Flow
 
-```bash
-npm start
-```
+1.  User logs in.
+2.  Backend returns JWT token.
+3.  Token stored in Context API.
+4.  Axios sets Authorization header globally.
+5.  ProtectedRoute checks authentication.
+6.  AdminRoute checks role.
+7.  Backend always enforces security.
 
----
+------------------------------------------------------------------------
 
-### 3. Frontend Setup
+## Creating First Admin
 
-Open a new terminal:
+1.  Register normally.
+2.  Update role in MongoDB (mongosh or Compass):
 
-```bash
-cd frontend
-npm install
-```
+db.users.updateOne( { email: "admin@example.com" }, { \$set: { role:
+"admin" } } )
 
-Start the frontend:
+------------------------------------------------------------------------
 
-```bash
-npm start
-```
+## API Overview
 
-Visit:
-```
-http://localhost:3000
-```
+### Auth
 
----
+POST /auth/register POST /auth/login
 
-## 📡 API Endpoints
+### Tasks
 
-| Method | Endpoint            | Description         |
-|--------|--------------------|---------------------|
-| GET    | /api/tasks         | Get all tasks       |
-| GET    | /api/tasks/:id     | Get task by ID      |
-| POST   | /api/tasks         | Create new task     |
-| PUT    | /api/tasks/:id     | Update a task       |
-| DELETE | /api/tasks/:id     | Delete a task       |
+GET /tasks POST /tasks GET /tasks/:id PUT /tasks/:id DELETE /tasks/:id
 
----
+Supports: page, limit, status, priority, sortBy, order, userId (admin)
 
-## 🧑‍💻 Usage
+### Users (Admin Only)
 
-1. Launch backend and frontend servers  
-2. Open the app in your browser  
-3. Add, update, or remove tasks
+GET /users POST /users PUT /users/:id DELETE /users/:id
 
----
+------------------------------------------------------------------------
 
-## 🤝 Contributing
+## License
 
-Want to improve this project?  
-1. Fork the repo  
-2. Create a new branch  
-3. Commit your changes  
-4. Open a pull request
-
----
-
-## 📄 License
-
-This project is open-source and available under the MIT License.
-
----
-
-⭐ If you find this project helpful, please give it a star!
+Educational & training project.
