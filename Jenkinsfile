@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -12,13 +13,26 @@ pipeline {
             }
         }
 
-        stage('Validate') {
+        stage('Install Frontend Dependencies') {
             steps {
-                sh '''
-                    set -eu
-                    test -f index.html
-                    echo "Website files verified"
-                '''
+                dir('frontend') {
+                    sh '''
+                        set -eu
+                        npm install
+                    '''
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    sh '''
+                        set -eu
+                        npm run build
+                        test -f dist/index.html
+                    '''
+                }
             }
         }
 
@@ -26,13 +40,12 @@ pipeline {
             steps {
                 sh '''
                     set -eu
-                    install -m 664 -t /var/www/html index.html
+                    test -f frontend/dist/index.html
 
-                    if [ -f style.css ]; then
-                        install -m 664 -t /var/www/html style.css
-                    fi
+                    sudo -n /usr/bin/rsync -a --delete \
+                        frontend/dist/ /var/www/html/
 
-                    echo "Deployment successful"
+                    echo "Frontend deployed successfully"
                 '''
             }
         }
@@ -40,10 +53,11 @@ pipeline {
 
     post {
         success {
-            echo 'Website deployed successfully!'
+            echo 'SUCCESS: Vite frontend deployed to Apache.'
         }
+
         failure {
-            echo 'Deployment failed. Check Console Output.'
+            echo 'FAILED: Check Console Output.'
         }
     }
 }
